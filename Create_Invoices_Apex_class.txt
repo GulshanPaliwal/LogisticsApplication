@@ -1,0 +1,16 @@
+public class Create_Invoices {
+    public invoices__c inv{get; set;}
+    public String currentRecordId {get;set;}
+    
+    public Create_Invoices(ApexPages.StandardController stdController) {
+        
+      currentRecordId  = ApexPages.CurrentPage().getparameters().get('id');
+       inv = [SELECT Id, Name, Pickup_Address__c, Invoice_Date__c, Delivery_Address__c, Distance__c, Per_Km__c,
+              Total__c,Driver_Charges__c, 
+              Invoice_Detail__c, Asset__c, Quote__c, Customer__c,
+              Customer__r.Pickup_Address__c, Customer__r.Delivery_Address__c
+              FROM invoices__c where id =: currentRecordId Limit 1 ];
+          
+    
+}
+    }

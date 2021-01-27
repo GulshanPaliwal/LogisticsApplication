@@ -1,0 +1,244 @@
+<apex:page showHeader="false" sidebar="false"  applyHtmlTag="false" standardController="invoices__c" extensions="Create_Invoices"   >
+
+    <head>
+        <style>
+            body {
+                font-family: sans-serif;
+                font-size: 14px;
+                position: relative;
+            }
+            
+            h1,
+            h2,
+            h3,
+            h4,
+            h5 {
+                margin: 0;
+            }
+            
+            h1 {
+                font-size: 18px;
+            }
+            
+            h2 {
+                font-size: 16px;
+            }
+            
+            h3 {
+                font-size: 14px;
+            }
+            
+            p,
+            td {
+                font-size: 12px;
+            }
+            
+            .invoice__header {
+                display: inline-block;
+                width: 100%;
+                margin: 0px 0 10px 0;
+            }
+            
+            .invoice__logo {
+                width: 300px;
+            }
+            
+            .invoice__title {
+                float: left;
+                width: 80%;
+            }
+            
+            .invoice__number {
+                float: left;
+                width: 20%;
+                text-align: right;
+            }
+            
+            .invoice__number span {
+                display: block;
+            }
+            
+            .invoice__address {
+                width: 50%;
+                float: left;
+            }
+            
+            .invoice__address h3 {
+                margin-bottom: 5px;
+            }
+            
+            .invoice__address span {
+                display: block;
+            }
+            
+            .invoice__address--left {
+                text-align: left;
+                width: 60%;
+            }
+            
+            .invoice__address--right {
+                text-align: right;
+                width: 40%;
+            }
+            .invoice__address--center {
+                text-align: center;
+                width: 40%;
+            }
+            
+            .invoice__memo,
+            .invoice__oli {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                float: left;
+                width: 100%;
+            }
+            
+            .invoice__memo {
+                width: 50%;
+            }
+            
+            .memo__header,
+            .oli__header {
+                padding: 10px 15px;
+                border-bottom: 1px solid #ddd;
+                border-top-right-radius: 3px;
+                border-top-left-radius: 3px;
+                background-color: #f2f8fc;
+                border-color: #ddd;
+            }
+            
+            .memo__content {
+                padding: 10px 15px;
+                min-height: 50px;
+            }
+            
+            table {
+                padding: 10px 15px;
+                width: 100%;
+            }
+            
+            .oli__footer {
+                border-top: 1px solid #ddd;
+                background-color: #f2f8fc;
+            }
+            
+            .oli_footer table td {
+                font-size: 20px;
+            }
+            
+            .text-right {
+                text-align: right;
+            }
+            
+            .text-center {
+                text-align: center;
+            }
+            
+            .invoice__footer {
+                width: 100%;
+                float: left;
+            }
+            
+            .invoice__footer img {
+                width: 100%;
+            }
+        </style>
+    </head>
+    <div class="invoice__header">
+        
+        <div class="invoice__title">
+            <h1>INVOICE</h1>
+        </div>
+        <div class="invoice__number">
+            <h1>{!inv.Name}</h1>
+            
+        </div>
+    </div>
+    <div class="invoice__contact">
+        <div class="invoice__address invoice__address--left">
+            <h3>Pickup Address</h3>
+            <!--<span class="address__line">{!invoices__c.Invoice_Detail__c}</span>-->
+            <span class="address__line">{!inv.Customer__r.Pickup_Address__c}</span>
+
+        </div>
+        <div class="invoice__address invoice__address--right">
+            <h3>Delivery Address</h3>
+            <!--<span class="address__line">{!invoices__c.Invoice_Detail__c}</span>-->
+            <!--<apex:outputPanel rendered="{!ISNULL(inv.Delivery_Address__c)}">-->
+            <span class="address__line">{!inv.Customer__r.Delivery_Address__c}</span>
+            
+        </div>
+    </div>
+    
+    <div class="invoice__oli">
+        <div class="oli__header">
+            <h2>Payment Summary</h2>
+        </div>
+        <div class="payment__table">
+            <table>
+                <col style="width:40%"></col>
+                <col style="width:20%"></col>
+                <col style="width:20%"></col>
+                <col style="width:20%"></col>
+                <thead>
+                    <tr>
+                         <td class="text-left">
+                            <strong>Date</strong>
+                             <div>
+                               <!--  <span class="address__line">{!inv.Invoice_Date__c}</span>-->
+                                 <span><apex:outputText value="{0,date, MM/dd/YYYY}">
+                                     <apex:param value="{!inv.Invoice_Date__c}" />
+                                     </apex:outputText></span> 
+                             </div>
+                             
+                        </td>
+                        <td class="text-left">
+                            <strong>Driver Charges</strong>
+                            <div>
+                                <span class="address__line">{!inv.Driver_Charges__c }</span>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <strong>Distance</strong>
+                            <div>
+                                <span class="address__line">{!inv.Distance__c   }</span>
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <strong>Per/Km</strong>
+                            <div>
+                                <span class="address__line">{!inv.Per_Km__c }</span>
+                            </div>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+
+                </tbody>
+            </table>
+        </div>
+        <div class="oli__footer">
+            <table>
+                <col style="width:85%"></col>
+                <col style="width:15%"></col>
+                <tbody>
+                    <tr> 
+                        <td class="thick-line text-right">
+                            <strong>Total Amount : </strong>
+                            <span class="address__line">{!inv.Total__c  }</span>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    
+
+</apex:page>
+                                        
