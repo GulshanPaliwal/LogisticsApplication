@@ -1,0 +1,87 @@
+<template>
+    
+    <lightning-card title="Create Customer Information" icon-name="standard:account">
+       
+        <div style="margin-left: 6%" if:true={error}>
+            <lightning-badge label={error} style="color: red;"></lightning-badge>
+        </div>
+
+        <template if:true={cusInfoRecord}>
+            <div class="slds-m-around--xx-large">
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <lightning-input label="Enter Customer Name" name="accName" required="required" type="text" value={cusInfoRecord.Name} onchange={handleNameChange}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Phone Number" name="accPhone" type="number" value={cusInfoRecord.Phone} onchange={handlePhoneChange}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Email Id " name="accEmail" required="required" type="text" value={cusInfoRecord.Type} onchange={handleTypeChange}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Pickup Address" name="cinfoPAdd" type="Long Text Area" value={cusInfoRecord.PAdd} onchange={handleIndustryChange}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Pickup City" name="cinfoPcity" type="text" value={cusInfoRecord.Pcity} onchange={handlePcity} ></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Pickup State" name="cinfoPState" type="text" value={cusInfoRecord.PState} onchange={handlePState}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Delivery Address" name="cinfoDAdd" type="Long Text Area" value={cusInfoRecord.DAdd}  onchange={handleDAdd} ></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Delivery City" name="cinfoDcity" type="text" value={cusInfoRecord.Dcity}   onchange={handleDcity}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Delivery State" name="cinfoState" type="text" value={cusInfoRecord.DState}  onchange={handleDState}></lightning-input>
+                    </div>
+                </div>
+                <br/>
+                <lightning-button label="Submit" onclick={handleSave} variant="brand"></lightning-button>
+            </div>
+        </template>
+    </lightning-card> 
+     
+    <!--<lightning-card title="Create Customer Information" >
+        <div style="margin-left: 6%" if:true={error}>
+            <lightning-badge label={error} style="color: red;"></lightning-badge>
+        </div>
+
+        <template if:true={cusInfoRecord}>
+            <div class="slds-m-around--xx-large">
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <lightning-input label="Enter Customer Name" name="cinfoName"  type="text" value={cusInfoRecord.Name} ></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Phone Number" name="cinfoPhone" type="number" value={cusInfoRecord.Phone} onchange={handlePhoneChange}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Customer Email" name="cinfoEmail" type="text" value={cusInfoRecord.EmailId} onchange={handleTypeChange}></lightning-input>
+                    </div>
+                   <div class="form-group">
+                        <lightning-input label="Enter Pickup Address" name="cinfoPAdd" type="Long Text Area" value={cusInfoRecord.PAdd} onchange={handlePAdd}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Pickup City" name="cinfoPcity" type="text" value={cusInfoRecord.Pcity}  onchange={handlePcity} ></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Pickup State" name="cinfoPState" type="text" value={cusInfoRecord.PState}  onchange={handlePState} ></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Delivery Address" name="cinfoDAdd" type="Long Text Area" value={cusInfoRecord.DAdd}  onchange={handleDAdd} ></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Delivery City" name="cinfoDcity" type="text" value={cusInfoRecord.Dcity}   onchange={handleDcity}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Delivery State" name="cinfoState" type="text" value={cusInfoRecord.DState}  onchange={handleDState}></lightning-input>
+                    </div>
+                </div>
+                <br/>
+                <lightning-button label="Submit" onclick={handleSave} variant="brand"></lightning-button>
+            </div>
+        </template>
+    </lightning-card>-->
+</template>
